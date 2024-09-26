@@ -1,0 +1,41 @@
+import cv2
+import numpy as np
+import os
+
+def image_as_array(image_path):
+    image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+    if image is None:
+        raise ValueError(f"Image at {image_path} could not be loaded.")                                                          
+    return image
+
+def image_similarity(image1, image2):
+    if image1.shape != image2.shape:
+        raise ValueError("The two images must have the same dimensions for comparison.")
+    
+    difference = np.abs(image1.astype(np.int16) - image2.astype(np.int16))
+    total_difference = np.sum(difference)
+    max_difference = image1.size * 255
+    similarity = 100 - (total_difference / max_difference) * 100
+    
+    return similarity, difference
+
+a = [
+   // PATH OF IMAGES
+]
+similarity_percentages = []
+differences = []
+
+for i in range(10):
+    image1_path = a[i]
+    image2_path = // PATH
+    image1 = image_as_array(image1_path)
+    image2 = image_as_array(image2_path)
+    percentage, difference = image_similarity(image1, image2)
+    difference_sum = np.sum(difference)
+    similarity_percentages.append(f"{percentage:.2f}")
+    differences.append(f"{difference_sum:.2f}")
+
+print(similarity_percentages)
+highest_similarity = max(similarity_percentages)
+max_index = similarity_percentages.index(highest_similarity)
+print(f"THE TEST IMAGE IS SIMILAR TO THE SAMPLE IMAGE:{max_index} AND THE PERCENTAGE IS:{highest_similarity}")
