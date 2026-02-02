@@ -20,14 +20,14 @@ def image_similarity(image1, image2):
     return similarity, difference
 
 a = [
-   // PATH OF IMAGES
+   // PATH OF IMAGES FOLDER
 ]
 similarity_percentages = []
 differences = []
 
 for i in range(10):
     image1_path = a[i]
-    image2_path = // PATH
+    image2_path = // PATH OF THE IMAGE 
     image1 = image_as_array(image1_path)
     image2 = image_as_array(image2_path)
     percentage, difference = image_similarity(image1, image2)
